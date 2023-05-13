@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def open_first_link(url):
+def open_first_link(brand):
     """
     Retrieve the first link from a web page and open it in the default web browser.
     
@@ -11,6 +11,7 @@ def open_first_link(url):
     Returns:
     None
     """
+    url = 'https://www.ethicalconsumer.org/search?keywords='+brand
     ethical = None
     boycotts = None
     # Send an HTTP GET request to the URL and retrieve the response
@@ -39,9 +40,9 @@ def open_first_link(url):
     index = line.index('"')
     line = line[:index]
     fv.close()
-
+    print('https://www.ethicalconsumer.org/'+line)
     # Send an HTTP GET request to the URL and retrieve the response
-    response = requests.get(url+line)
+    response = requests.get('https://www.ethicalconsumer.org/'+line)
     
     # Use BeautifulSoup to parse the HTML content of the response
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -60,6 +61,7 @@ def open_first_link(url):
             found = True
         line = fv.readline()
     if found:
+        print('in found')
         if 'Yes' in line:
             ethical = True
         else:
@@ -82,10 +84,9 @@ def open_first_link(url):
     return ethical,boycotts
 
         
-
+print(open_first_link('adidas'))
 
 
 
     
     
-print(open_first_link('https://www.ethicalconsumer.org/search?keywords=adidas'))
