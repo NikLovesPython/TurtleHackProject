@@ -40,10 +40,32 @@ def open_first_link(url):
     # Use BeautifulSoup to parse the HTML content of the response
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    # Find the first link on the page
-    link = soup.find('a')
-    if link is not None and 'href' in link.attrs:
-        # Open the link in the default web browser
-        import webbrowser
-        webbrowser.open(link['href'])
+    #open file and write html to ir
+    fv = open('temp.txt',"w+")
+    fv.writelines(soup.prettify())
+    fv.close()
+    fv = open('temp.txt',"r")
+
+    line = fv.readline()
+    found = False
+    print(line)
+    while not found and line !="":
+        #print(line)
+        if '<h3 class="search-result__title">' in line:
+            found = True
+            print("found string")
+        line = fv.readline()
+
+    print(line)
+
+    index = line.index('"')
+    line = line[index+1:]
+    index = line.index('"')
+    line = line[:index]
+    fv.close()
+    print(line)
+
+
     
+    
+open_first_link('https://www.ethicalconsumer.org/search?keywords=adidas')
