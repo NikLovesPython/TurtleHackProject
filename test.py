@@ -24,7 +24,7 @@ for code in coupon_codes:
 import requests
 from bs4 import BeautifulSoup
 
-def open_first_link(url = "https://www.ethicalconsumer.org/search?keywords=adidas"):
+def open_first_link(url):
     """
     Retrieve the first link from a web page and open it in the default web browser.
     
@@ -41,11 +41,9 @@ def open_first_link(url = "https://www.ethicalconsumer.org/search?keywords=adida
     soup = BeautifulSoup(response.text, 'html.parser')
     
     # Find the first link on the page
-    link = soup.find('a')['href']
-    
-    # Open the link in the default web browser
-    import webbrowser
-    webbrowser.open(link)
-
-    sdfg
+    link = soup.find('a')
+    if link is not None and 'href' in link.attrs:
+        # Open the link in the default web browser
+        import webbrowser
+        webbrowser.open(link['href'])
     
