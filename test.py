@@ -46,4 +46,6 @@ def open_first_link(url = "https://www.ethicalconsumer.org/search?keywords=adida
     # Open the link in the default web browser
     import webbrowser
     webbrowser.open(link)
+
+    sdfg
     
