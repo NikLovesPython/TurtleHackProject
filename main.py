@@ -7,7 +7,7 @@ def main(brand):
     if boycotts is None:
         boycotts = 'None'
     links = c.coupon_website_links(brand)
-    fv = open('forC++.txt','w+',encoding='utf-8')
+    fv = open('forC#.txt','w+',encoding='utf-8')
     fv.write(ethical+'\n')
     fv.write(boycotts+'\n')
     for link in links:

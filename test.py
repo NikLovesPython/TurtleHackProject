@@ -40,7 +40,6 @@ def open_first_link(brand):
     index = line.index('"')
     line = line[:index]
     fv.close()
-    print('https://www.ethicalconsumer.org/'+line)
     # Send an HTTP GET request to the URL and retrieve the response
     response = requests.get('https://www.ethicalconsumer.org/'+line)
     
@@ -56,35 +55,37 @@ def open_first_link(brand):
     fv = open('temp.txt','r')
     line = fv.readline()
     found = False
+
     while not found and line!='':
-        if '"<b>Ethical Consumer Best Buy:</b>"' in line:
+        if 'Ethical Consumer Best Buy' in line:
             found = True
         line = fv.readline()
+
     if found:
-        print('in found')
+        line = fv.readline()
         if 'Yes' in line:
-            ethical = True
+            ethical = 'True'
         else:
-            ethical = False
+            ethical = 'False'
 
 
     found = False
     while not found and line!='':
-        if '"<b>Boycotts:</b>"' in line:
+        
+        if 'Boycotts:' in line:
             found = True
         line = fv.readline()
 
-        if found:
-            if 'Yes' in line:
-                boycotts = True
-            else:
-                boycotts = False
+    if found:
+        line = fv.readline()
+        if 'Yes' in line:
+            boycotts = 'True'
+        else:
+            boycotts = 'False'
     fv.close()
 
     return ethical,boycotts
 
-        
-print(open_first_link('adidas'))
 
 
 
