@@ -58,5 +58,3 @@ def search_google(query):
 
     return first_link['href']
 
-
-coupon_website_links('Nike')

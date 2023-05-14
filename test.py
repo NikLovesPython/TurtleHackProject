@@ -64,9 +64,9 @@ def open_first_link(brand):
     if found:
         line = fv.readline()
         if 'Yes' in line:
-            ethical = 'True'
+            ethical = True
         else:
-            ethical = 'False'
+            ethical = False
 
 
     found = False
@@ -79,14 +79,12 @@ def open_first_link(brand):
     if found:
         line = fv.readline()
         if 'Yes' in line:
-            boycotts = 'True'
+            boycotts = True
         else:
-            boycotts = 'False'
+            boycotts = False
     fv.close()
 
     return ethical,boycotts
-
-
 
 
     
